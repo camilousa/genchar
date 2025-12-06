@@ -151,4 +151,35 @@ def remove_duplicate_spaces_and_newlines(text):
 # print(f"Texto limpio:\n{remove_duplicate_spaces_and_newlines(example_text)}")
 
 
+def create_sliding_windows(sequence, window_size):
+    """
+    Crea ventanas deslizantes de un tamaño específico de una secuencia para generar
+    pares de entrada (X) y salida (y).
 
+    Args:
+        sequence (list or str): La secuencia de datos de la que se extraerán las ventanas.
+        window_size (int): El tamaño de la ventana deslizante.
+
+    Returns:
+        tuple: Una tupla que contiene dos listas:
+               - X (list): Una lista de secuencias de entrada.
+               - y (list): Una lista de elementos de salida correspondientes.
+    """
+    X = []
+    y = []
+    for i in range(len(sequence) - window_size):
+        X.append(sequence[i:i + window_size])
+        y.append(sequence[i + window_size])
+    return X, y
+
+# Ejemplo de uso con el texto limpio
+# Primero, aseguramos que el texto esté completamente limpio de saltos de línea y espacios duplicados
+final_cleaned_text = remove_duplicate_spaces_and_newlines(cleaned_text)
+
+# Ahora aplicamos la ventana deslizante
+window_size = 5
+X_data, y_data = create_sliding_windows(final_cleaned_text, window_size)
+
+print(f"Primeras 5 entradas X: {X_data[:5]}")
+print(f"Primeras 5 salidas y: {y_data[:5]}")
+print(f"Total de pares (X, y) generados: {len(X_data)}")
