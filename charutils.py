@@ -172,14 +172,3 @@ def create_sliding_windows(sequence, window_size):
         y.append(sequence[i + window_size])
     return X, y
 
-# Ejemplo de uso con el texto limpio
-# Primero, aseguramos que el texto esté completamente limpio de saltos de línea y espacios duplicados
-final_cleaned_text = remove_duplicate_spaces_and_newlines(cleaned_text)
-
-# Ahora aplicamos la ventana deslizante
-window_size = 5
-X_data, y_data = create_sliding_windows(final_cleaned_text, window_size)
-
-print(f"Primeras 5 entradas X: {X_data[:5]}")
-print(f"Primeras 5 salidas y: {y_data[:5]}")
-print(f"Total de pares (X, y) generados: {len(X_data)}")
